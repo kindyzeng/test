@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="kafka-clients-0.8.2.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/kafka-clients-0.8.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/kafka_2.10-0.8.2.2-test.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/kafka_2.10-0.8.2.2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/kafka_2.10-0.8.2.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/kafka_2.10-0.8.2.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
