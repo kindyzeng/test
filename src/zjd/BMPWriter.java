@@ -13,7 +13,7 @@ public class BMPWriter {
     BMPFileHeader bmpFileHeader;
     BMPInfoHeader bmpInfoHeader;
     BMPData bmpData;
-
+//
     public BMPWriter(int width, int height, int bitCount) {
         int skip = 0;
         if(width*3%4!=0)
