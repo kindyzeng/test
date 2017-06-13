@@ -3,6 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/src/storm" vcs="Git" />
+    <mapping directory="D:\storm\abc" vcs="Git" />
     <mapping directory="D:\storm\te" vcs="Git" />
   </component>
 </project>
