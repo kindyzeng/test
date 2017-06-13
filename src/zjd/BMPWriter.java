@@ -20,7 +20,7 @@ public class BMPWriter {
             skip = 4 - (width*3%4);
 
         int offset = 54;
-
+//
         int size = width*height*3+skip*height+offset;
 
         bmpFileHeader = new BMPFileHeader(size, offset);
