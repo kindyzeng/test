@@ -13,7 +13,7 @@ import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
 
 public class Server extends ServerSocket {
-	private static final int SERVER_PORT =171;
+	private static final int SERVER_PORT =111;
 	private static  String topic = "" ;
 	public Server(String topic)throws IOException {
 		super(SERVER_PORT);

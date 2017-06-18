@@ -33,8 +33,9 @@ public class UpdateDataTopology {
         @Override
         public void execute(Tuple tuple, BasicOutputCollector collector) {
             String line  = tuple.getString(0);
-            String id = line.split("\t")[1];
-            collector.emit(new Values(id,line));
+            if(line.split("\t").length>=2){
+                String id = line.split("\t")[1];
+            collector.emit(new Values(id,line));}
         }
 
     }
@@ -42,13 +43,13 @@ public class UpdateDataTopology {
     private final BrokerHosts brokerHosts;
 
     public UpdateDataTopology() {
-        brokerHosts = new ZkHosts("192.168.1.100:2181,192.168.1.101:2181,192.168.1.102:2181");
+        brokerHosts = new ZkHosts("20.10.11.6:2181,20.10.11.7:2181,20.10.11.8:2181,20.10.11.9:2181,20.10.11.10:2181");
     }
 
-    public StormTopology buildTopology() {
+    public StormTopology buildTopology(String topic) {
         TopologyBuilder topologyBuilder = new TopologyBuilder();
 
-        SpoutConfig spoutConfig = new SpoutConfig(brokerHosts,"point","","point1");
+        SpoutConfig spoutConfig = new SpoutConfig(brokerHosts,topic,"","point1");
         spoutConfig.forceFromStart = true;
         spoutConfig.scheme = new SchemeAsMultiScheme(new StringScheme());
 
@@ -63,13 +64,13 @@ public class UpdateDataTopology {
         Config conf = new Config();
         conf.setNumWorkers(66);
         conf.setMaxTaskParallelism(99);
-        conf.put(Config.NIMBUS_HOST, "192.168.1.100");
+        conf.put(Config.NIMBUS_HOST, "20.10.11.6");
         conf.put(Config.NIMBUS_THRIFT_PORT, 6627);
         conf.put(Config.STORM_ZOOKEEPER_PORT, 2181);
-        conf.put(Config.STORM_ZOOKEEPER_SERVERS, Arrays.asList("192.168.1.100","192.168.1.101","192.168.1.102"));
+        conf.put(Config.STORM_ZOOKEEPER_SERVERS, Arrays.asList("20.10.11.6","20.10.11.7","20.10.11.8","20.10.11.9","20.10.11.10"));
 
         UpdateDataTopology updateDataTopology = new UpdateDataTopology();
-        StormTopology stormTopology = updateDataTopology.buildTopology();
+        StormTopology stormTopology = updateDataTopology.buildTopology(args[1]);
 
         if (args != null && args.length > 0) {
             StormSubmitter.submitTopologyWithProgressBar(args[0], conf, stormTopology);

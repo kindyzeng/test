@@ -13,8 +13,10 @@ import java.net.Socket;
 import java.util.Properties;
 
 public class LocalServer extends ServerSocket {
-	private static final int SERVER_PORT =171;
+	private static final int SERVER_PORT =111;
 	   private static  String topic ;
+	   private static long time1,time2;
+	   private static int i,k = 1;
 	public LocalServer()throws IOException {
 		super(SERVER_PORT);
 		try {
@@ -41,9 +43,9 @@ public class LocalServer extends ServerSocket {
 			bufferedReader =new BufferedReader(new InputStreamReader(client.getInputStream()));
 
 			printWriter =new PrintWriter(client.getOutputStream(),true);
-			System.out.println("Client(" + getName() +") come in...");  
-
-
+			System.out.println("Client(" + getName() +") come in...");
+			i = 0;
+			time1 = System.currentTimeMillis();
 			start();
 		}
 
@@ -75,8 +77,14 @@ public class LocalServer extends ServerSocket {
 					printWriter.println("continue, Client(" + getName() +")!");
 					//        		      System.out.println("fuck4");
 					System.out.println("Client(" + getName() +") say: " + line);
-					line = bufferedReader.readLine();
+					time2 = System.currentTimeMillis();
+					i++;
+					if((time2-time1)>=5*1000){
+						System.out.println(k * 5+" "+i);
+						time1 = time2;k++;
+					}
 
+					line = bufferedReader.readLine();
 				}
 				printWriter.println("bye, Client(" + getName() +")!");
 
